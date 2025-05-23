@@ -1,0 +1,1895 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f7f9;
+    color: #222;
+    display: flex; /* Facilitate fixed sidebar and scrolling content */
+}
+.container {
+    display: flex; /* This might be redundant if body is flex, review context */
+    width: 100%; /* Ensure container takes full width */
+    /* height: 100vh; remove this if sidebar is full height and content scrolls */
+}
+.container.no-sidebar-container {
+    /* Styles for when there is no sidebar, main content takes full width */
+    /* display: block; or adjust flex properties */
+}
+.sidebar {
+    width: 270px;
+    background: #fff;
+    border-right: 1px solid #ececec;
+    padding: 0; /* Adjusted for full-width button hover */
+    position: fixed; /* Fixed position for the sidebar */
+    top: 0;
+    left: 0;
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto; /* Allow sidebar to scroll if content overflows */
+    z-index: 1000; /* Ensure sidebar is above other content */
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 24px 20px 16px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 1px solid #ececec;
+}
+.logo {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+.app-title {
+    color: #1aaf5d;
+}
+.new-chat-btn {
+    margin: 20px;
+    padding: 10px 0;
+    background: #1aaf5d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.new-chat-btn:hover {
+    background: #178f4a;
+}
+.history-section {
+    flex: 1;
+    padding: 0 20px;
+    margin-top: 10px;
+}
+.history-section h3 {
+    font-size: 1em;
+    margin: 0 0 10px 0;
+    color: #888;
+}
+.history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.history-list .empty {
+    color: #bbb;
+    font-style: italic;
+    margin-top: 20px;
+}
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f7f7f9;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin-left: 320px; /* 更新为用户修改的侧边栏宽度 */
+}
+.main-content.full-width-content {
+    margin-left: 0;
+    display: flex; /* For centering auth-form */
+    align-items: center; /* For centering auth-form */
+    justify-content: center; /* For centering auth-form */
+    padding-bottom: 80px; /* Space for fixed auth-page-footer */
+}
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 40px 0 40px;
+}
+.main-header .centered-title {
+    flex: 1;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.add-scenario-btn {
+    background: #fff;
+    color: #1aaf5d;
+    border: 1px solid #1aaf5d;
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.add-scenario-btn:hover {
+    background: #1aaf5d;
+    color: #fff;
+}
+.pages {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0 0 0;
+    min-height: 0;
+}
+.page {
+    display: none;
+    width: 100%;
+    max-width: 900px;
+}
+.page.active {
+    display: block;
+}
+.scenarios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.scenario-card {
+    background: #fff;
+    border-radius: 10px; /* Slightly smaller radius */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05); /* Softer shadow */
+    padding: 20px 15px; /* Reduced padding */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* max-width: 280px; */ /* Optional: if you want to cap width further */
+}
+.scenario-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+}
+.scenario-icon-placeholder {
+    width: 60px; /* Smaller icon placeholder */
+    height: 60px;
+    border-radius: 50%;
+    background-color: #e9f5ff;
+    margin-bottom: 15px; /* Reduced margin */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em; /* Adjusted icon size */
+    color: #007bff;
+}
+.scenario-card h3 {
+    font-size: 1.1em; /* Slightly smaller heading */
+    color: #333;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+.scenario-card span {
+    color: #666;
+    font-size: 0.85em; /* Slightly smaller text */
+    line-height: 1.4;
+}
+.chat-box {
+    max-width: 900px; /* Adjusted max-width for a wider chat box */
+    width: 100%; /* Responsive width */
+    margin: 30px auto; /* Centering the chat box on the page */
+    padding: 10px 15px; /* Adjusted padding for taller box */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 150px; /* User-defined height */
+    box-sizing: border-box;
+}
+.image-upload-btn { /* This is the label acting as a button */
+    font-size: 2em; /* Larger paperclip icon */
+    padding: 8px; /* Adjust padding if needed */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.2s;
+    /* order: -1; by HTML structure, not strictly needed but good for clarity if flex order was complex */
+}
+.image-upload-btn:hover {
+    color: #1aaf5d;
+}
+.image-preview-container {
+    display: none; /* Hidden by default, shown by JS */
+    position: relative; /* For the remove button */
+    max-height: calc(100% - 16px); /* Fit within chat-box, considering some padding */
+    max-width: 180px; /* 增大预览宽度，从100px增加到180px */
+    margin-right: 12px; /* 增加与文本输入框的间距 */
+}
+.image-preview-container img {
+    height: 120px; /* 设置固定高度，从auto改为120px */
+    width: auto;   /* Maintain aspect ratio */
+    max-width: 100%; /* Ensure it doesn't overflow container */
+    max-height: 120px; /* 设置最大高度为120px */
+    border-radius: 8px; /* 稍微增加圆角 */
+    object-fit: cover; /* Cover the area, might crop */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 添加阴影效果 */
+}
+.remove-image-btn {
+    position: absolute;
+    top: -5px; /* Adjust for better positioning */
+    right: -5px; /* Adjust for better positioning */
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 20px; /* Smaller remove button */
+    height: 20px;
+    font-size: 12px; /* Smaller X */
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+.remove-image-btn:hover {
+    background: #fff;
+    color: #000;
+}
+.chat-box input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.1em;
+    padding: 10px;
+    background: transparent;
+    height: 100%; /* Make input take full height of chatbox */
+    box-sizing: border-box;
+}
+.send-btn {
+    /* Styles for send button remain largely the same */
+    /* Ensure it aligns well in the taller chatbox */
+    height: 48px; /* Keep fixed size or make relative to chatbox height */
+    width: 48px;
+    align-self: center; /* Explicitly center if chatbox items have different heights */
+}
+.chat-box-bottom {
+    border-top: 1px solid #ececec;
+    padding: 20px;
+    flex-shrink: 0;
+    background-color: #fff; /* 白色背景以区分对话区域 */
+    position: static; /* 改为正常定位，不固定 */
+    margin-top: auto; /* 推到页面底部 */
+}
+.footer-top-line {
+    display: flex;
+    justify-content: center; /* 居中对齐 */
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #3a3a5e;
+    padding-bottom: 10px;
+    flex-wrap: wrap; /* 在小屏幕上允许换行 */
+}
+
+.footer-top-line a {
+    color: #3a3a5e;
+    text-decoration: none;
+}
+
+.footer-top-line a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom-line {
+    display: flex;
+    justify-content: center; /* 居中对齐 */
+    align-items: center;
+    gap: 25px;
+    font-size: 14px;
+    flex-wrap: wrap; /* 在小屏幕上允许换行 */
+}
+
+.footer-bottom-line a {
+    color: #3a3a5e;
+    text-decoration: none;
+}
+
+.footer-bottom-line a:hover {
+    text-decoration: underline;
+}
+
+.site-footer p {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.site-footer p:last-child {
+    margin-bottom: 0;
+}
+.site-footer {
+    padding: 20px;
+    background-color: #d5d8dc;
+    color: #3a3a5e;
+    border-top: 1px solid #3a3a5e;
+    width: 100%; /* Adjusted for main content area */      /* Adjusted for main content area */
+    flex-shrink: 0;
+    text-align: center;
+    position: relative;
+}
+
+.user-eval-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 20px 10px 20px;
+    padding: 10px 0 10px 8px;
+    background: transparent;
+    color: #3a8fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: left;
+    font-weight: 500;
+    box-shadow: none;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    outline: none;
+}
+.user-eval-btn .star-icon {
+    color: #ff3cff;
+    font-size: 1.2em;
+    margin-right: 2px;
+}
+.user-eval-btn:hover, .user-eval-btn:focus {
+    background: #eaf6ff;
+    border: 1.5px solid #3a8fff;
+    color: #3a8fff;
+}
+.page-evaluation { /* This is the main container for the user evaluation content */
+    /* background: #fff; */ /* REMOVE white background */
+    /* box-shadow: 0 2px 8px rgba(0,0,0,0.04); */ /* REMOVE box shadow */
+    border-radius: 0; /* Remove border-radius if it had one from the white box style */
+    padding: 20px; /* Add some padding to the overall page if needed, or rely on section padding */
+    margin: 0 auto;
+    max-width: 100%; /* Allow it to use more width if content inside is wider */
+    /* text-align: center; */ /* Remove if sections handle their own alignment */
+}
+.evaluation-list {
+    list-style: none;
+    padding: 0 20px; /* Add some padding if it's directly on page bg */
+    margin: 0 auto 30px auto; /* Center the list */
+    max-width: 800px; /* Constrain width */
+    /* color: #1aaf5d; */ /* Color can be inherited or set per item */
+    background-color: #fff; /* Give list its own subtle card bg */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 25px; /* Padding inside the card */
+}
+.evaluation-list li {
+    margin: 12px 0;
+    font-size: 1.05em;
+    color: #333; /* Adjust text color for readability on white */
+}
+.evaluation-list li strong {
+    color: #1aaf5d; /* Keep key terms in accent color */
+}
+.evaluation-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 调整最小宽度以确保更好的布局 */
+    gap: 30px; /* 增加间距 */
+    padding: 0 20px; /* Add some padding if it's directly on page bg */
+    max-width: 1400px; /* 增加最大宽度以容纳更多卡片 */
+    margin: 0 auto 40px auto; /* Center the section */
+}
+.eval-block {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%); /* 渐变背景 */
+    border-radius: 20px; /* 增加圆角 */
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08); /* 增强阴影 */
+    padding: 30px 25px; /* 调整内边距 */
+    min-height: 200px; /* 增加最小高度以容纳新内容 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 居中对齐 */
+    text-align: center; /* 文本居中 */
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease; /* 增加过渡时间 */
+    position: relative;
+    overflow: hidden;
+}
+
+/* 为每个块添加顶部装饰条 */
+.eval-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1aaf5d, #27ae60);
+}
+
+.eval-block:hover {
+    transform: translateY(-6px); /* 增加悬停上浮距离 */
+    box-shadow: 0 15px 45px rgba(0,0,0,0.15); /* 增强悬停阴影 */
+}
+
+/* 评估图标样式 */
+.eval-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e9f5ff, #f0f8ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+    border: 2px solid rgba(0, 123, 255, 0.1);
+}
+
+.eval-block h3 {
+    margin: 0 0 15px 0; /* 增加底部间距 */
+    font-size: 1.3em; /* 稍微减小字体 */
+    color: #1aaf5d;
+    font-weight: 700; /* 增加字体粗细 */
+}
+
+.eval-block p {
+    margin: 0 0 20px 0; /* 为评分区域留出空间 */
+    color: #555;
+    font-size: 1em;
+    line-height: 1.7;
+    flex-grow: 1; /* 让段落填充可用空间 */
+}
+
+/* 评分区域样式 */
+.eval-rating {
+    margin-top: auto; /* 推到底部 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.eval-rating .rating-label {
+    font-size: 0.85em;
+    color: #666;
+    font-weight: 500;
+}
+
+.eval-rating .rating-stars {
+    font-size: 1.3em;
+    color: #ffb400;
+    text-shadow: 0 1px 2px rgba(255, 180, 0, 0.3);
+}
+
+/* Enhanced evaluation description */
+.evaluation-desc {
+    color: #444;
+    margin: 40px auto; /* 增加上下间距 */
+    max-width: 1000px; /* 增加最大宽度 */
+    text-align: center;
+    padding: 35px 40px; /* 增加内边距 */
+    background: linear-gradient(135deg, #fff 0%, #f0fff4 100%); /* 添加淡绿色渐变 */
+    border-radius: 20px; /* 增加圆角 */
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    border: 2px solid rgba(26, 175, 93, 0.1); /* 增加绿色边框 */
+    position: relative;
+    overflow: hidden;
+}
+
+/* 为描述区域添加装饰 */
+.evaluation-desc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1aaf5d, #27ae60, #2ecc71);
+}
+
+/* 描述区域图标 */
+.desc-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e8f5e8, #f0fff4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 6px 20px rgba(26, 175, 93, 0.2);
+    border: 3px solid rgba(26, 175, 93, 0.1);
+}
+
+.evaluation-desc h3 {
+    font-size: 1.8em;
+    color: #1aaf5d;
+    margin: 0 0 20px 0;
+    font-weight: 700;
+}
+
+.evaluation-desc p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin: 0 0 15px 0;
+    color: #555;
+}
+
+.highlight-text {
+    color: #1aaf5d !important;
+    font-weight: 600;
+    font-size: 1.2em !important;
+}
+
+/* Enhanced other content placeholder */
+.other-content-placeholder {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%); /* 渐变背景 */
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 20px; /* 增加圆角 */
+    padding: 40px; /* 增加内边距 */
+    margin: 40px auto; /* 增加间距 */
+    max-width: 1000px; /* 增加最大宽度 */
+    text-align: center;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08); /* 增强阴影 */
+    position: relative;
+    overflow: hidden;
+}
+
+.other-content-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2980b9, #8e44ad);
+}
+
+/* 内容头部样式 */
+.content-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.content-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e3f2fd, #f0f8ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+    border: 2px solid rgba(52, 152, 219, 0.1);
+}
+
+.content-header h3 {
+    color: #2c3e50;
+    font-size: 1.6em; /* 增加字体大小 */
+    font-weight: 600;
+    margin: 0;
+}
+
+.other-content-placeholder p {
+    color: #555;
+    font-size: 1.1em; /* 增加字体大小 */
+    line-height: 1.8; /* 增加行高 */
+    margin-bottom: 30px;
+}
+
+/* 功能列表样式 */
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.feature-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #fff, #f8f9fa);
+}
+
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e3f2fd, #f0f8ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+}
+
+.feature-item span:last-child {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 1em;
+}
+
+@media (max-width: 900px) {
+    .main-content {
+        margin-left: 0; /* Remove margin when sidebar might be hidden or stacked */
+        padding-bottom: 80px; /* Adjust for smaller footer */
+    }
+    .sidebar {
+        /* Consider how sidebar behaves on small screens - transform, partial, or static top */
+        /* For now, let's assume it might be hidden by JS or becomes a top bar */
+        /* If it stacks, then main-content margin-left needs to be removed */
+        position: static; /* Example: if sidebar stacks */
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ececec;
+        padding: 0; /* Reset padding for stacked layout */
+    }
+    .chat-box {
+        width: 95%; /* Maintain high width on mobile */
+        height: 80px; /* Slightly reduce height on mobile if 100px is too much */
+        padding: 8px 10px;
+        gap: 8px;
+    }
+    .image-upload-btn {
+        font-size: 1.8em;
+    }
+    .image-preview-container {
+        max-height: calc(100% - 10px);
+        max-width: 80px;
+    }
+    .chat-box input[type="text"] {
+        font-size: 1em;
+    }
+    .send-btn {
+        height: 40px;
+        width: 40px;
+        font-size: 1.3em;
+    }
+    .main-footer-fixed {
+        width: 100%;
+        margin-left: 0;
+    }
+    .auth-container {
+        margin-left: 0; /* Remove margin if sidebar is not fixed or hidden */
+        min-height: calc(100vh - 120px); /* Adjust for potential header/footer on auth pages */
+    }
+    .sidebar .new-chat-btn,
+    .sidebar .user-eval-btn,
+    .sidebar .history-btn {
+        padding: 12px 15px; /* Adjust padding for stacked sidebar buttons */
+        border-radius: 0; /* Remove radius if they stack weirdly */
+    }
+    .sidebar .new-chat-btn {
+        margin: 10px 15px; /* Adjust margin for stacked */
+        width: calc(100% - 30px);
+        border-radius: 6px;
+    }
+    .comments-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+    .user-comments-section {
+        padding: 0 15px;
+    }
+    .comment-card {
+        padding: 20px 25px;
+    }
+}
+
+/* Login and Register Page Styles */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 240px); /* Adjust if header/footer on these pages */
+    padding: 20px;
+    margin-left: 240px; /* If sidebar is present */
+    box-sizing: border-box;
+}
+
+.auth-form {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-form h1 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.auth-form .auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1aaf5d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.auth-form .auth-button:hover {
+    background-color: #178f4a;
+}
+
+.auth-form .google-login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #fff;
+    color: #444;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.auth-form .google-login-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.auth-form .google-login-btn:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.auth-form .auth-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.auth-form .auth-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-form .auth-link a:hover {
+    text-decoration: underline;
+}
+
+.back-to-home-auth {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.back-to-home-auth:hover {
+    background-color: #5a6268;
+}
+
+@media (max-width: 900px) {
+    .main-footer-fixed {
+        width: 100%;
+        margin-left: 0;
+    }
+    .auth-container {
+        margin-left: 0; /* Remove margin if sidebar is not fixed or hidden */
+        min-height: calc(100vh - 120px); /* Adjust for potential header/footer on auth pages */
+    }
+    .sidebar .new-chat-btn,
+    .sidebar .user-eval-btn,
+    .sidebar .history-btn {
+        padding: 12px 15px; /* Adjust padding for stacked sidebar buttons */
+        border-radius: 0; /* Remove radius if they stack weirdly */
+    }
+    .sidebar .new-chat-btn {
+        margin: 10px 15px; /* Adjust margin for stacked */
+        width: calc(100% - 30px);
+        border-radius: 6px;
+    }
+}
+
+.sidebar .new-chat-btn {
+    margin: 20px;
+    padding: 10px 0;
+    background: #1aaf5d;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar .new-chat-btn:hover {
+    background: #178f4a;
+}
+
+/* General style for Conversation and User Evaluation buttons */
+.sidebar .sidebar-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 15px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 0.95em;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    color: #333;
+    box-sizing: border-box;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.sidebar .sidebar-btn .btn-icon {
+    margin-right: 12px;
+    font-size: 1.2em;
+}
+
+.sidebar .sidebar-btn:hover,
+.sidebar .sidebar-btn.active {
+    background-color: #e0f0ff;
+    color: #007bff;
+}
+
+/* User Evaluation Page Enhancements */
+.page-evaluation h2 {
+    font-size: 2.2em; /* Slightly larger */
+    color: #2c3e50;
+    margin-bottom: 25px; /* Increased bottom margin */
+}
+
+.evaluation-list {
+    margin-bottom: 30px; /* More space after the list */
+}
+
+.evaluation-list li {
+    font-size: 1.05em; /* Slightly larger list items */
+    margin-bottom: 8px; /* Space between list items */
+}
+
+.evaluation-details {
+    gap: 25px; /* Increased gap between blocks */
+}
+
+.eval-block {
+    padding: 25px; /* More padding inside blocks */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08); /* Enhanced shadow */
+}
+
+.eval-block h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.25em;
+    color: #1aaf5d;
+    font-weight: 700; /* Bolder */
+}
+
+.user-comments-section h2 {
+    font-size: 2.2em; 
+    margin-bottom: 40px;
+}
+
+.comments-grid {
+    gap: 35px; 
+}
+
+.comment-card {
+    padding: 30px; 
+}
+
+/* Auth pages - ensuring form is centered */
+.auth-container.full-width-content {
+    display: flex;
+    flex-direction: column; /* To stack form and home button */
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Full height to center vertically */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        /* On small screens, sidebar might become a top bar or be toggleable */
+        /* For now, it stacks as per previous CSS */
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ececec;
+        padding: 0; /* Reset padding for stacked layout */
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .page-footer {
+        width: 100%; /* Footer spans full width on small screens */
+        margin-left: 0;
+    }
+    .chat-box {
+        flex-wrap: wrap; /* Allow items to wrap on small screens if needed */
+    }
+    .chat-box input[type="text"] {
+        order: -1; /* Ensure input is first if upload btn wraps below */
+        width: calc(100% - 50px); /* Adjust if send button is present */
+    }
+    .image-upload-btn {
+        order: 0; /* Reset order or adjust for mobile if needed */
+        margin-right: 0;
+        margin-left: 5px; /* Example if moved to right on mobile */
+    }
+}
+
+.page-footer {
+    background-color: #f0f2f5;
+    color: #454f5b;
+    padding: 20px 0;
+    border-top: 1px solid #d9dce0;
+    text-align: center;
+    font-size: 0.88em;
+    margin-top: auto;
+    margin-left: 0; /* No additional left margin needed */
+    width: 100%; /* Spans the width of its container (.main-content) */
+    box-sizing: border-box;
+}
+
+.page-footer.auth-page-footer {
+    /* This remains for login/register pages (no sidebar, fixed at bottom) */
+    margin-left: 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 900;
+}
+
+.footer-content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Auth form centering */
+.auth-container.full-width-content .auth-form {
+    margin-top: auto; /* Part of vertical centering solution with flexbox */
+    margin-bottom: auto; /* Part of vertical centering solution with flexbox */
+}
+
+/* Responsive adjustments for sidebar width change */
+@media (max-width: 900px) {
+    .main-content {
+        margin-left: 0;
+    }
+    .page-footer {
+        margin-left: 0;
+        width: 100%;
+    }
+    .chat-box {
+        /* chat-box was already full-width essentially on small screens */
+    }
+    /* Other responsive styles for .auth-container, etc. remain mostly valid */
+}
+
+/* Ensure sidebar styles are correct after user changes */
+.sidebar {
+    width: 320px; /* As per user file change */
+    /* ... other sidebar styles ... */
+}
+
+/* User Evaluation Page Enhancements from previous step - CHECK IF STILL GOOD */
+/* ... existing .page-evaluation styles ... */
+/* ... existing .evaluation-list styles ... */
+/* ... existing .evaluation-details styles ... */
+/* ... existing .eval-block styles ... */
+/* ... existing .user-comments-section styles ... */
+/* ... existing .comments-grid styles ... */
+/* ... existing .comment-card styles ... */
+
+/* Auth form centering */
+.auth-container.full-width-content .auth-form {
+    margin-top: auto; /* Part of vertical centering solution with flexbox */
+    margin-bottom: auto; /* Part of vertical centering solution with flexbox */
+}
+
+/* Focused Chat View Styles */
+.page-focused-chat {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* 让此部分填满 main-content 的剩余空间 */
+    /* height: 100vh; */ /* 移除固定高度，由 flex-grow 控制 */
+    background-color: #f7f7f9;
+    /* overflow: hidden; */ /* 暂时移除此行以测试是否是影响因素 */
+}
+
+.focused-chat-content { 
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start; /* 改为顶部对齐 */
+    justify-content: center;
+    padding: 30px 20px 20px 20px; /* 恢复正常的padding */
+    background-color: #f7f7f9;
+    overflow-y: auto; /* 允许滚动以查看AI回复 */
+}
+
+/* 场景显示区域样式 */
+.scenario-display {
+    text-align: center;
+    max-width: 500px; /* 减小最大宽度 */
+    width: 100%;
+    cursor: pointer; /* 添加点击提示 */
+    transition: transform 0.2s ease; /* 添加悬停效果 */
+}
+
+.scenario-display:hover {
+    transform: translateY(-2px); /* 悬停时轻微上浮 */
+}
+
+.scenario-icon-large {
+    width: 60px; /* 进一步减小图标尺寸 */
+    height: 60px; 
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e9f5ff, #f0f8ff);
+    margin: 0 auto 15px auto; /* 减小底部间距 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em; /* 进一步减小字体 */
+    color: #007bff;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.15); /* 减小阴影 */
+    border: 2px solid rgba(0, 123, 255, 0.1);
+}
+
+.scenario-title-large {
+    font-size: 1.8em; /* 进一步减小标题 */
+    color: #2c3e50;
+    margin: 0 0 10px 0; /* 减小底部间距 */
+    font-weight: 700;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.scenario-description {
+    font-size: 1em; /* 减小描述文字 */
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* 底部对话框容器 - 位于页面底部但不固定 */
+.chat-box-bottom {
+    border-top: 1px solid #ececec;
+    padding: 20px;
+    flex-shrink: 0;
+    background-color: #fff; /* 白色背景以区分对话区域 */
+    position: static; /* 改为正常定位，不固定 */
+    margin-top: auto; /* 推到页面底部 */
+}
+
+/* 调整聚焦页面的对话框样式，使其与首页一致 */
+#focusedChatBox {
+    margin: 0 auto; /* 居中对话框 */
+    width: 100%; /* 与用户修改保持一致 */
+    max-width: 900px; /* 与首页一致 */
+    height: 150px; /* 与用户修改后的首页高度一致 */
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    background: #fff;
+    border: 1px solid #ececec;
+}
+
+/* 调整聚焦聊天内容，取消额外的底部padding */
+.focused-chat-content {
+    padding: 30px 20px 20px 20px; /* 恢复正常的padding */
+    overflow-y: auto; /* 允许滚动以查看AI回复 */
+}
+
+/* 响应式调整 */
+@media (max-width: 900px) {
+    .chat-box-bottom {
+        padding: 15px; /* 移动端减少padding */
+    }
+    
+    .scenario-icon-large {
+        width: 50px; /* 移动端进一步缩小 */
+        height: 50px;
+        font-size: 1.5em;
+        margin-bottom: 12px;
+    }
+    
+    .scenario-title-large {
+        font-size: 1.5em;
+        margin-bottom: 8px;
+    }
+    
+    .scenario-description {
+        font-size: 0.9em;
+    }
+    
+    .focused-chat-content {
+        padding: 20px 15px 15px 15px; /* 移动端调整padding */
+    }
+    
+    #focusedChatBox {
+        width: 95%;
+        height: 120px;
+    }
+    
+    .image-preview-container {
+        max-width: 140px; /* 移动端稍微减小图片预览宽度 */
+        margin-right: 8px;
+    }
+    
+    .image-preview-container img {
+        height: 100px; /* 移动端图片高度调整为100px */
+        max-height: 100px;
+    }
+}
+
+/* ... rest of existing styles ... */
+/* MARQUEE AND ANIMATED TITLE STYLES - UPDATED FOR 3D VERTICAL COLUMNS */
+.user-reviews-title {
+    text-align: center;
+    font-size: 2em;
+    color: #2c3e50;
+    margin: 30px auto 25px auto; /* 确保标题居中 */
+    font-weight: 600;
+    max-width: 1200px; /* 限制最大宽度 */
+    padding: 0 20px; /* 添加内边距 */
+}
+
+/* Overall Rating Section */
+.overall-rating-section {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 30px;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.overall-score {
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.score-number {
+    font-size: 3em;
+    font-weight: bold;
+    color: #1aaf5d;
+    margin-bottom: 8px;
+}
+
+.stars-display {
+    font-size: 1.2em;
+    color: #ffb400;
+    margin-bottom: 8px;
+}
+
+.review-count {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.rating-bars {
+    flex: 1;
+    max-width: 600px;
+}
+
+.rating-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 15px;
+}
+
+.rating-label {
+    min-width: 80px;
+    font-size: 0.9em;
+    color: #333;
+    font-weight: 500;
+}
+
+.rating-bar {
+    flex: 1;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.rating-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1aaf5d, #27ae60);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.rating-score {
+    min-width: 30px;
+    font-weight: 600;
+    color: #1aaf5d;
+    font-size: 0.9em;
+}
+
+/* 3D Marquee Container - Updated based on React code */
+.marquee-3d-container {
+    position: relative;
+    height: 384px; /* h-96 = 384px */
+    width: 100%;
+    max-width: 1400px; /* 增加最大宽度，让跑马灯更宽 */
+    margin: 40px auto;
+    overflow: hidden;
+    perspective: 300px; /* Matching React code [perspective:300px] */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marquee-inner-transform {
+    display: flex;
+    align-items: center;
+    gap: 100px; /* 增加列之间的间隔，从24px到36px，让左右两边评论间隙更宽 */
+    /* Matching the complex transform from React code */
+    transform: translateX(-100px) translateY(0px) translateZ(-100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg);
+}
+
+.marquee-column {
+    width: 180px; /* 增加列宽度，从144px到180px */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.marquee-column-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 继续增加评论卡片之间的间隔，从20px到28px */
+    padding: 0;
+}
+
+/* Vertical scrolling animations matching [--duration:20s] */
+.marquee-column[data-direction="up"] .marquee-column-content {
+    animation: marquee-up 25s linear infinite; /* 稍微减慢动画速度 */
+}
+
+.marquee-column[data-direction="down"] .marquee-column-content {
+    animation: marquee-down 25s linear infinite; /* 稍微减慢动画速度 */
+}
+
+.marquee-column:hover .marquee-column-content {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-up {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes marquee-down {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* Updated review card to match React component styling */
+.review-card {
+    position: relative;
+    height: auto;
+    width: 180px; /* 对应增加卡片宽度 */
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 16px; /* 增加圆角，更美观 */
+    border: 1px solid rgba(0, 0, 0, 0.08); /* 稍微加深边框 */
+    background-color: rgba(255, 255, 255, 0.9); /* 增加背景透明度 */
+    padding: 18px; /* 增加内边距 */
+    transition: all 0.3s ease; /* 添加过渡效果 */
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-bottom: 16px; /* 增加底部间距 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); /* 添加阴影 */
+}
+
+.review-card:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-2px); /* 悬停时轻微上浮 */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* 悬停时增强阴影 */
+}
+
+/* 添加评论卡片内部样式 */
+.review-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.review-avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f0f0f0;
+}
+
+.review-user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.review-name {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.review-username {
+    font-size: 0.75em;
+    color: #666;
+    margin: 2px 0 0 0;
+}
+
+.review-body {
+    font-size: 0.85em;
+    line-height: 1.4;
+    color: #444;
+    margin: 0 0 12px 0;
+    text-align: left;
+}
+
+.review-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: auto;
+}
+
+.tag {
+    background: linear-gradient(135deg, #1aaf5d, #27ae60);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.7em;
+    font-weight: 500;
+}
+
+/* Gradient overlays matching React code */
+.marquee-gradient-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30%; /* 增加渐变覆盖区域 */
+    background: linear-gradient(to bottom, #f7f7f9, transparent);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.marquee-gradient-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%; /* 增加渐变覆盖区域 */
+    background: linear-gradient(to top, #f7f7f9, transparent);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.marquee-gradient-left {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 30%; /* 增加渐变覆盖区域 */
+    background: linear-gradient(to right, #f7f7f9, transparent);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.marquee-gradient-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 30%; /* 增加渐变覆盖区域 */
+    background: linear-gradient(to left, #f7f7f9, transparent);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Better styling for capability overview section */
+.capability-overview-title {
+    text-align: center;
+    font-size: 2.4em; /* 增加标题大小 */
+    background: linear-gradient(135deg, #2c3e50, #3498db); /* 添加渐变色 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 60px auto 40px auto; /* 增加上下间距 */
+    font-weight: 700; /* 增加字体粗细 */
+    max-width: 1200px;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* Enhanced evaluation list styling */
+.evaluation-list {
+    list-style: none;
+    padding: 35px 40px; /* 增加内边距 */
+    margin: 0 auto 40px auto; /* 增加底部间距 */
+    max-width: 1000px; /* 增加最大宽度 */
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%); /* 添加渐变背景 */
+    border-radius: 20px; /* 增加圆角 */
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1); /* 增强阴影 */
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 为评估列表添加装饰性元素 */
+.evaluation-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1aaf5d, #27ae60, #3498db);
+}
+
+.evaluation-list li {
+    margin: 18px 0; /* 增加行间距 */
+    font-size: 1.15em; /* 增加字体大小 */
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0; /* 增加内边距 */
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
+
+.evaluation-list li:hover {
+    background-color: rgba(26, 175, 93, 0.05);
+    padding-left: 10px;
+    border-radius: 8px;
+}
+
+.evaluation-list li:last-child {
+    border-bottom: none;
+}
+
+.evaluation-list li strong {
+    color: #1aaf5d;
+    font-weight: 700; /* 增加字体粗细 */
+}
+
+.evaluation-list .stars {
+    color: #ffb400;
+    margin-left: 10px;
+    font-size: 1.3em; /* 增加星星大小 */
+    text-shadow: 0 1px 2px rgba(255, 180, 0, 0.3); /* 添加文字阴影 */
+}
+
+/* Enhanced eval-block styling */
+.eval-block {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%); /* 渐变背景 */
+    border-radius: 20px; /* 增加圆角 */
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08); /* 增强阴影 */
+    padding: 30px 25px; /* 调整内边距 */
+    min-height: 200px; /* 增加最小高度以容纳新内容 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 居中对齐 */
+    text-align: center; /* 文本居中 */
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease; /* 增加过渡时间 */
+    position: relative;
+    overflow: hidden;
+}
+
+/* 为每个块添加顶部装饰条 */
+.eval-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1aaf5d, #27ae60);
+}
+
+.eval-block:hover {
+    transform: translateY(-6px); /* 增加悬停上浮距离 */
+    box-shadow: 0 15px 45px rgba(0,0,0,0.15); /* 增强悬停阴影 */
+}
+
+.eval-block h3 {
+    margin: 0 0 15px 0; /* 增加底部间距 */
+    font-size: 1.3em; /* 稍微减小字体 */
+    color: #1aaf5d;
+    font-weight: 700; /* 增加字体粗细 */
+}
+
+.eval-block p {
+    margin: 0 0 20px 0; /* 为评分区域留出空间 */
+    color: #555;
+    font-size: 1em;
+    line-height: 1.7;
+    flex-grow: 1; /* 让段落填充可用空间 */
+}
+
+/* 评分区域样式 */
+.eval-rating {
+    margin-top: auto; /* 推到底部 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.eval-rating .rating-label {
+    font-size: 0.85em;
+    color: #666;
+    font-weight: 500;
+}
+
+.eval-rating .rating-stars {
+    font-size: 1.3em;
+    color: #ffb400;
+    text-shadow: 0 1px 2px rgba(255, 180, 0, 0.3);
+}
+
+/* Enhanced evaluation description */
+.evaluation-desc {
+    color: #444;
+    margin: 40px auto; /* 增加上下间距 */
+    max-width: 1000px; /* 增加最大宽度 */
+    text-align: center;
+    padding: 35px 40px; /* 增加内边距 */
+    background: linear-gradient(135deg, #fff 0%, #f0fff4 100%); /* 添加淡绿色渐变 */
+    border-radius: 20px; /* 增加圆角 */
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    border: 2px solid rgba(26, 175, 93, 0.1); /* 增加绿色边框 */
+    position: relative;
+    overflow: hidden;
+}
+
+/* 为描述区域添加装饰 */
+.evaluation-desc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1aaf5d, #27ae60, #2ecc71);
+}
+
+/* 描述区域图标 */
+.desc-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e8f5e8, #f0fff4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 6px 20px rgba(26, 175, 93, 0.2);
+    border: 3px solid rgba(26, 175, 93, 0.1);
+}
+
+.evaluation-desc h3 {
+    font-size: 1.8em;
+    color: #1aaf5d;
+    margin: 0 0 20px 0;
+    font-weight: 700;
+}
+
+.evaluation-desc p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin: 0 0 15px 0;
+    color: #555;
+}
+
+.highlight-text {
+    color: #1aaf5d !important;
+    font-weight: 600;
+    font-size: 1.2em !important;
+}
+
+/* Enhanced other content placeholder */
+.other-content-placeholder {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%); /* 渐变背景 */
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 20px; /* 增加圆角 */
+    padding: 40px; /* 增加内边距 */
+    margin: 40px auto; /* 增加间距 */
+    max-width: 1000px; /* 增加最大宽度 */
+    text-align: center;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08); /* 增强阴影 */
+    position: relative;
+    overflow: hidden;
+}
+
+.other-content-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2980b9, #8e44ad);
+}
+
+/* 内容头部样式 */
+.content-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.content-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e3f2fd, #f0f8ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+    border: 2px solid rgba(52, 152, 219, 0.1);
+}
+
+.content-header h3 {
+    color: #2c3e50;
+    font-size: 1.6em; /* 增加字体大小 */
+    font-weight: 600;
+    margin: 0;
+}
+
+.other-content-placeholder p {
+    color: #555;
+    font-size: 1.1em; /* 增加字体大小 */
+    line-height: 1.8; /* 增加行高 */
+    margin-bottom: 30px;
+}
+
+/* 功能列表样式 */
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.feature-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #fff, #f8f9fa);
+}
+
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e3f2fd, #f0f8ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+}
+
+.feature-item span:last-child {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 1em;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 900px) {
+    .marquee-3d-container {
+        max-width: 350px; /* 在移动端适当减小 */
+        height: 300px;
+        perspective: 250px;
+        margin: 30px auto;
+    }
+    
+    .marquee-inner-transform {
+        gap: 16px; /* 移动端减小间隔 */
+        transform: translateX(-50px) translateY(0px) translateZ(-50px) rotateX(15deg) rotateY(-8deg) rotateZ(15deg);
+    }
+    
+    .marquee-column {
+        width: 140px; /* 移动端调整宽度 */
+    }
+    
+    .review-card {
+        width: 140px;
+        padding: 14px;
+        font-size: 0.85em;
+    }
+    
+    .overall-rating-section {
+        flex-direction: column;
+        gap: 30px;
+        padding: 30px 20px;
+        margin: 40px auto 50px auto;
+        max-width: 95%;
+    }
+    
+    .evaluation-list {
+        padding: 25px 20px;
+        margin: 0 auto 30px auto;
+        max-width: 95%;
+    }
+    
+    .eval-block {
+        padding: 25px 20px;
+        min-height: 140px;
+    }
+    
+    .evaluation-desc {
+        font-size: 1.05em;
+        padding: 25px 20px;
+        margin: 30px auto;
+        max-width: 95%;
+    }
+    
+    .other-content-placeholder {
+        padding: 30px 20px;
+        margin: 30px auto;
+        max-width: 95%;
+    }
+    
+    .capability-overview-title {
+        font-size: 2em;
+        margin: 50px auto 30px auto;
+    }
+}
+
+/* 动态渐变标题 */
+.animated-gradient-title {
+    font-weight: bold;
+    background: linear-gradient(to right, #ff8a00, #e52e71, #2980b9, #27ae60, #ff8a00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-animation 10s ease infinite;
+    background-size: 400% 400%; 
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Container wrapper styling */
+.marquee-container-wrapper {
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* User reviews title styling */
+.user-reviews-title {
+    text-align: center;
+    font-size: 2.2em;
+    background: linear-gradient(135deg, #2c3e50, #3498db, #27ae60);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 40px auto 30px auto;
+    font-weight: 700;
+    max-width: 1200px;
+    padding: 0 20px;
+}

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Evaluation - Aquila Enhanced Edition</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 额外美化可选 */
+        .page-evaluation h2 {
+            font-size: 2em;
+            color: #1aaf5d;
+            margin-bottom: 18px;
+        }
+        .evaluation-list .stars {
+            color: #ffb400;
+            margin-left: 6px;
+        }
+        .evaluation-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="logo">🦅</span>
+                <span class="app-title">Aquila Enhanced Edition</span>
+            </div>
+            <button class="new-chat-btn" onclick="window.location.href='index.html'">+ New Conversation</button>
+            <button class="sidebar-btn conversation-btn" onclick="window.location.href='index.html'"><span class="btn-icon">💬</span>Chat</button>
+            <button class="user-eval-btn sidebar-btn active" onclick="window.location.href='user-evaluation.html'"><span class="btn-icon">📜</span>User Evaluation</button>
+            <div class="history-section">
+                <h3>Recent Conversations</h3>
+                <ul class="history-list">
+                    <li class="empty">No recent conversations</li>
+                </ul>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <h1 class="centered-title animated-gradient-title">User Evaluation</h1>
+            </header>
+            <section class="page page-evaluation active" id="userEvaluationPage">
+                <!-- New structure for individual review cards with marquee -->
+                <div class="marquee-container-wrapper">
+                    <h2 class="user-reviews-title">Real-time User Reviews</h2> <!-- Title for the reviews section -->
+                    
+                    <!-- 3D Marquee Container (moved up) -->
+                    <div class="marquee-3d-container">
+                        <div class="marquee-inner-transform">
+                            <div class="marquee-column" data-direction="up">
+                                <div class="marquee-column-content">
+                                    <!-- Column 1 reviews will be injected here -->
+                                </div>
+                                <div class="marquee-column-content">
+                                    <!-- Duplicate for seamless loop -->
+                                </div>
+                            </div>
+                            <div class="marquee-column" data-direction="down">
+                                <div class="marquee-column-content">
+                                    <!-- Column 2 reviews will be injected here -->
+                                </div>
+                                <div class="marquee-column-content">
+                                    <!-- Duplicate for seamless loop -->
+                                </div>
+                            </div>
+                            <div class="marquee-column" data-direction="up">
+                                <div class="marquee-column-content">
+                                    <!-- Column 3 reviews will be injected here -->
+                                </div>
+                                <div class="marquee-column-content">
+                                    <!-- Duplicate for seamless loop -->
+                                </div>
+                            </div>
+                            <div class="marquee-column" data-direction="down">
+                                <div class="marquee-column-content">
+                                    <!-- Column 4 reviews will be injected here -->
+                                </div>
+                                <div class="marquee-column-content">
+                                    <!-- Duplicate for seamless loop -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Gradient overlays for fade effect -->
+                        <div class="marquee-gradient-top"></div>
+                        <div class="marquee-gradient-bottom"></div>
+                        <div class="marquee-gradient-left"></div>
+                        <div class="marquee-gradient-right"></div>
+                    </div>
+                    
+                    <!-- Overall Rating Section (moved below marquee) -->
+                    <div class="overall-rating-section">
+                        <div class="overall-score">
+                            <div class="score-number">4.8</div>
+                            <div class="stars-display">★★★★★</div>
+                            <div class="review-count">Based on 2,487 reviews</div>
+                        </div>
+                        <div class="rating-bars">
+                            <div class="rating-item">
+                                <span class="rating-label">Understanding</span>
+                                <div class="rating-bar">
+                                    <div class="rating-fill" style="width: 98%"></div>
+                                </div>
+                                <span class="rating-score">4.9</span>
+                            </div>
+                            <div class="rating-item">
+                                <span class="rating-label">Analysis</span>
+                                <div class="rating-bar">
+                                    <div class="rating-fill" style="width: 90%"></div>
+                                </div>
+                                <span class="rating-score">4.5</span>
+                            </div>
+                            <div class="rating-item">
+                                <span class="rating-label">Translation</span>
+                                <div class="rating-bar">
+                                    <div class="rating-fill" style="width: 96%"></div>
+                                </div>
+                                <span class="rating-score">4.8</span>
+                            </div>
+                            <div class="rating-item">
+                                <span class="rating-label">Writing</span>
+                                <div class="rating-bar">
+                                    <div class="rating-fill" style="width: 98%"></div>
+                                </div>
+                                <span class="rating-score">4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Existing Capability Overview can remain if desired, or be restyled/removed -->
+                <h2 class="capability-overview-title">Aquila Enhanced Edition: Capability Overview</h2>
+                <ul class="evaluation-list">
+                    <li><strong>Programming Ability:</strong> Excellent at code generation, debugging, and algorithmic thinking. <span class="stars">★★★★☆</span></li>
+                    <li><strong>Comprehension:</strong> Quickly understands user intent and context. <span class="stars">★★★★★</span></li>
+                    <li><strong>Image Processing:</strong> Supports basic image analysis and description. <span class="stars">★★★☆☆</span></li>
+                    <li><strong>Text Summarization:</strong> Can condense long texts into concise summaries. <span class="stars">★★★★☆</span></li>
+                    <li><strong>Creativity:</strong> Generates creative content and ideas. <span class="stars">★★★★☆</span></li>
+                    <li><strong>Professional Writing:</strong> Delivers high-quality, structured documents. <span class="stars">★★★★☆</span></li>
+                </ul>
+                <div class="evaluation-details">
+                    <div class="eval-block">
+                        <div class="eval-icon">💻</div>
+                        <h3>Programming Ability</h3>
+                        <p>Skilled in generating, refactoring, and debugging code in multiple languages. Able to solve algorithmic problems and provide code explanations. Suitable for both beginners and advanced users.</p>
+                        <div class="eval-rating">
+                            <span class="rating-label">Excellence Rating:</span>
+                            <div class="rating-stars">★★★★☆</div>
+                        </div>
+                    </div>
+                    <div class="eval-block">
+                        <div class="eval-icon">🧠</div>
+                        <h3>Comprehension</h3>
+                        <p>Quickly grasps user intent, context, and requirements, providing accurate and relevant responses. Excels at understanding complex instructions and multi-turn conversations.</p>
+                        <div class="eval-rating">
+                            <span class="rating-label">Excellence Rating:</span>
+                            <div class="rating-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <div class="eval-block">
+                        <div class="eval-icon">🖼️</div>
+                        <h3>Image Processing</h3>
+                        <p>Capable of basic image analysis, description, and simple visual tasks. Not suitable for advanced image editing, but can assist with image understanding and annotation.</p>
+                        <div class="eval-rating">
+                            <span class="rating-label">Excellence Rating:</span>
+                            <div class="rating-stars">★★★☆☆</div>
+                        </div>
+                    </div>
+                    <div class="eval-block">
+                        <div class="eval-icon">📄</div>
+                        <h3>Text Summarization</h3>
+                        <p>Efficiently summarizes long texts, extracting key points and main ideas for easy understanding. Useful for document review and knowledge distillation.</p>
+                        <div class="eval-rating">
+                            <span class="rating-label">Excellence Rating:</span>
+                            <div class="rating-stars">★★★★☆</div>
+                        </div>
+                    </div>
+                    <div class="eval-block">
+                        <div class="eval-icon">🎨</div>
+                        <h3>Creativity</h3>
+                        <p>Generates creative content, ideas, and solutions for a variety of writing and brainstorming tasks. Supports story writing, marketing copy, and more.</p>
+                        <div class="eval-rating">
+                            <span class="rating-label">Excellence Rating:</span>
+                            <div class="rating-stars">★★★★☆</div>
+                        </div>
+                    </div>
+                    <div class="eval-block">
+                        <div class="eval-icon">✍️</div>
+                        <h3>Professional Writing</h3>
+                        <p>Produces well-structured, high-quality documents suitable for academic, business, and creative purposes. Ensures clarity, coherence, and professionalism in output.</p>
+                        <div class="eval-rating">
+                            <span class="rating-label">Excellence Rating:</span>
+                            <div class="rating-stars">★★★★☆</div>
+                        </div>
+                    </div>
+                    <div class="eval-block">
+                        <div class="eval-icon">🌐</div>
+                        <h3>Multilingual Processing</h3>
+                        <p>Supports translation, interpretation, and content creation across multiple languages. Maintains context and cultural nuances while ensuring accurate communication.</p>
+                        <div class="eval-rating">
+                            <span class="rating-label">Excellence Rating:</span>
+                            <div class="rating-stars">★★★★☆</div>
+                        </div>
+                    </div>
+                    <div class="eval-block">
+                        <div class="eval-icon">😊</div>
+                        <h3>User Experience</h3>
+                        <p>Designed with intuitive interface and smooth interactions. Provides consistent, reliable responses with fast processing speed and user-friendly feedback mechanisms.</p>
+                        <div class="eval-rating">
+                            <span class="rating-label">Excellence Rating:</span>
+                            <div class="rating-stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="evaluation-desc">
+                    <div class="desc-icon">🚀</div>
+                    <h3>Overall Assessment</h3>
+                    <p>Aquila Enhanced Edition excels in programming, comprehension, and professional writing, with solid performance in image processing and creativity.</p>
+                    <p class="highlight-text">Empowering your productivity with accessible AI.</p>
+                </div>
+                
+                <div class="other-content-placeholder">
+                    <div class="content-header">
+                        <div class="content-icon">📢</div>
+                        <h3>What's New & Coming Soon</h3>
+                    </div>
+                    <p>Stay tuned for more updates and features coming soon to Aquila Enhanced Edition! We are constantly working to improve your experience.</p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">🔮</span>
+                            <span>Advanced AI Reasoning Engine</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🌐</span>
+                            <span>Multi-language Support Enhancement</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">👥</span>
+                            <span>Community Forum & Collaboration</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">⚡</span>
+                            <span>Real-time Performance Optimization</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="page-footer">
+                <div class="footer-content-wrapper">
+                    <div class="footer-content">
+                        <span>渝ICP备2025053282号.</span>
+                        <span>Contact us: <a href="mailto:ytogabode40@2925.com">ytogabode40@2925.com</a></span>
+                    </div>
+                    <div class="footer-bottom">Content generated by AI, cannot be guaranteed to be accurate,For reference only. | Privacy Policy | Terms of Service</div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // JavaScript to dynamically insert reviews into multiple columns
+        const reviewsData = [
+          {
+            name: "Alex Chen",
+            username: "@alex_dev",
+            body: "Aquila Enhanced Edition has revolutionized my coding workflow. The AI understands complex requirements and generates clean, efficient code. It's like having a senior developer as my pair programming partner!",
+            img: "https://avatar.vercel.sh/alex",
+            tags: ["Code Generation", "Debugging", "Productivity"]
+          },
+          {
+            name: "Sarah Williams",
+            username: "@sarah_writer",
+            body: "As a content creator, this tool is invaluable. From brainstorming ideas to polishing final drafts, Aquila helps at every step. The text analysis and improvement suggestions are spot-on.",
+            img: "https://avatar.vercel.sh/sarah",
+            tags: ["Writing", "Content Creation", "Text Analysis"]
+          },
+          {
+            name: "Dr. Michael Rodriguez",
+            username: "@dr_research",
+            body: "Research work has become much more efficient. Aquila helps with data analysis, paper structuring, and literature reviews. The comprehension capabilities are truly impressive for academic work.",
+            img: "https://avatar.vercel.sh/michael",
+            tags: ["Research", "Academia", "Data Analysis"]
+          },
+          {
+            name: "Emily Johnson",
+            username: "@emily_manager",
+            body: "Business reporting and document creation are now streamlined. The AI understands context perfectly and produces professional-quality outputs every time. Great for presentations too!",
+            img: "https://avatar.vercel.sh/emily",
+            tags: ["Business", "Reports", "Management"]
+          },
+          {
+            name: "David Park",
+            username: "@david_designer",
+            body: "The text-to-image feature is mind-blowing! I can quickly visualize concepts and iterate on designs. It's transformed how I approach creative projects and client presentations.",
+            img: "https://avatar.vercel.sh/david",
+            tags: ["Design", "Creativity", "Visualization"]
+          },
+          {
+            name: "Prof. Lisa Thompson",
+            username: "@prof_lisa",
+            body: "Teaching has become more engaging with Aquila's help. I can create better course materials, explain complex concepts clearly, and provide personalized feedback to students efficiently.",
+            img: "https://avatar.vercel.sh/lisa",
+            tags: ["Education", "Teaching", "Course Design"]
+          },
+          {
+            name: "James Miller",
+            username: "@james_student",
+            body: "This is a game-changer for my studies! Complex topics become clear, essay writing is smoother, and the translation features help with international research. Absolutely recommended!",
+            img: "https://avatar.vercel.sh/james",
+            tags: ["Student Life", "Learning", "Translation"]
+          },
+          {
+            name: "Rachel Green",
+            username: "@rachel_engineer",
+            body: "Technical documentation and code reviews are so much faster now. The AI understands engineering contexts and provides relevant suggestions. It's become an essential part of my toolkit.",
+            img: "https://avatar.vercel.sh/rachel",
+            tags: ["Engineering", "Documentation", "Code Review"]
+          },
+          {
+            name: "Mark Anderson",
+            username: "@mark_startup",
+            body: "Building a startup requires wearing many hats. Aquila helps with business plans, market analysis, and investor presentations. It's like having a consultant available 24/7!",
+            img: "https://avatar.vercel.sh/mark",
+            tags: ["Startup", "Business Planning", "Strategy"]
+          },
+          {
+            name: "Jennifer Liu",
+            username: "@jen_translator",
+            body: "Professional translation work has never been easier. The AI maintains context, style, and technical accuracy across languages. It's an incredible tool for global communication.",
+            img: "https://avatar.vercel.sh/jennifer",
+            tags: ["Translation", "Languages", "Communication"]
+          },
+          {
+            name: "Robert Taylor",
+            username: "@rob_analyst",
+            body: "Data visualization and report generation are incredibly smooth. The AI understands complex datasets and creates meaningful insights. Perfect for executive dashboards and client reports.",
+            img: "https://avatar.vercel.sh/robert",
+            tags: ["Analytics", "Data Viz", "Business Intelligence"]
+          },
+          {
+            name: "Amanda Davis",
+            username: "@amanda_pm",
+            body: "Project management documentation, stakeholder communication, and requirement gathering have all improved dramatically. The quality and clarity of outputs are consistently excellent.",
+            img: "https://avatar.vercel.sh/amanda",
+            tags: ["Project Management", "Documentation", "Communication"]
+          },
+          {
+            name: "Kevin Zhang",
+            username: "@kevin_freelancer",
+            body: "As a freelancer, efficiency is everything. Aquila helps me deliver higher quality work faster, from client proposals to final deliverables. It's boosted my productivity significantly.",
+            img: "https://avatar.vercel.sh/kevin",
+            tags: ["Freelancing", "Productivity", "Quality"]
+          },
+          {
+            name: "Sophie Martin",
+            username: "@sophie_marketing",
+            body: "Marketing campaigns and content strategies are now data-driven and creative. The AI helps with copy, analysis, and campaign optimization. Results have improved across all metrics!",
+            img: "https://avatar.vercel.sh/sophie",
+            tags: ["Marketing", "Strategy", "Content"]
+          },
+          {
+            name: "Daniel Kim",
+            username: "@daniel_consultant",
+            body: "Client presentations and strategic recommendations have reached a new level. Aquila helps structure complex ideas clearly and creates compelling narratives for business cases.",
+            img: "https://avatar.vercel.sh/daniel",
+            tags: ["Consulting", "Strategy", "Presentations"]
+          },
+          {
+            name: "Maya Patel",
+            username: "@maya_scientist",
+            body: "Scientific writing and research synthesis are much more efficient. The AI understands technical terminology and helps maintain academic rigor while improving readability.",
+            img: "https://avatar.vercel.sh/maya",
+            tags: ["Science", "Research", "Academic Writing"]
+          }
+        ];
+
+        // Split reviews into 4 columns for better distribution
+        const columns = [[], [], [], []];
+        reviewsData.forEach((review, index) => {
+            columns[index % 4].push(review);
+        });
+
+        function createReviewCard(review) {
+            const figure = document.createElement('figure');
+            figure.className = 'review-card';
+
+            const header = document.createElement('div');
+            header.className = 'review-card-header';
+
+            const img = document.createElement('img');
+            img.className = 'review-avatar';
+            img.width = 32;
+            img.height = 32;
+            img.alt = review.name + " Avatar";
+            img.src = review.img;
+
+            const userInfo = document.createElement('div');
+            userInfo.className = 'review-user-info';
+
+            const figcaption = document.createElement('figcaption');
+            figcaption.className = 'review-name';
+            figcaption.textContent = review.name;
+
+            const usernameP = document.createElement('p');
+            usernameP.className = 'review-username';
+            usernameP.textContent = review.username;
+
+            userInfo.appendChild(figcaption);
+            userInfo.appendChild(usernameP);
+            header.appendChild(img);
+            header.appendChild(userInfo);
+
+            const blockquote = document.createElement('blockquote');
+            blockquote.className = 'review-body';
+            blockquote.textContent = review.body;
+            
+            figure.appendChild(header);
+            figure.appendChild(blockquote);
+
+            if (review.tags && review.tags.length > 0) {
+                const tagsDiv = document.createElement('div');
+                tagsDiv.className = 'review-tags';
+                review.tags.forEach(tagText => {
+                    const tagSpan = document.createElement('span');
+                    tagSpan.className = 'tag';
+                    tagSpan.textContent = tagText;
+                    tagsDiv.appendChild(tagSpan);
+                });
+                figure.appendChild(tagsDiv);
+            }
+
+            return figure;
+        }
+
+        function populateColumn(columnIndex, reviews) {
+            const columnElements = document.querySelectorAll(`.marquee-column:nth-child(${columnIndex + 1}) .marquee-column-content`);
+            
+            columnElements.forEach(container => {
+                reviews.forEach(review => {
+                    const card = createReviewCard(review);
+                    container.appendChild(card);
+                });
+            });
+        }
+
+        // Populate all columns
+        columns.forEach((columnReviews, index) => {
+            populateColumn(index, columnReviews);
+        });
+    </script>
+</body>
+</html> 

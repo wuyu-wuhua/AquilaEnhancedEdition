@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquila Enhanced Edition</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/制作网站图标.png">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="logo">🦅</span>
+                <span class="app-title">Aquila Enhanced Edition</span>
+            </div>
+            <button class="new-chat-btn" onclick="window.location.href='index.html'">+ New Conversation</button>
+            <button class="sidebar-btn conversation-btn" onclick="window.location.href='index.html'"><span class="btn-icon">💬</span>Chat</button>
+            <button class="user-eval-btn sidebar-btn" onclick="window.location.href='user-evaluation.html'"><span class="btn-icon">📜</span>User Evaluation</button>
+            <div class="history-section">
+                <h3>Recent Conversations</h3>
+                <ul class="history-list">
+                    <li class="empty">No recent conversations</li>
+                </ul>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <h1 class="centered-title animated-gradient-title">Aquila Enhanced Edition</h1>
+                <button class="add-scenario-btn" onclick="window.location.href='login.html'">login in</button>
+            </header>
+            <section class="pages">
+                <div class="page page-conversation active">
+                    <div class="scenarios">
+                        <div class="scenario-card">
+                            <div class="scenario-icon-placeholder">🎨</div>
+                            <h3>Text to Image</h3>
+                            <span>Describe your idea and generate creative images.</span>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon-placeholder">🔍</div>
+                            <h3>Image to Prompt</h3>
+                            <span>Upload an image to get a detailed description or prompt.</span>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon-placeholder">🖼️</div>
+                            <h3>Image to Image</h3>
+                            <span>Upload an image to generate a new one with a similar style or content.</span>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon-placeholder">✍️</div>
+                            <h3>Text Summarization</h3>
+                            <span>Summarize long texts quickly.</span>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon-placeholder">📑</div>
+                            <h3>Paper Outline</h3>
+                            <span>Help structure academic papers efficiently.</span>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon-placeholder">✨</div>
+                            <h3>Text Polishing</h3>
+                            <span>Enhance text quality and professionalism.</span>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon-placeholder">💡</div>
+                            <h3>AI Expansion</h3>
+                            <span>Expand content from short prompts.</span>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon-placeholder">🖋️</div>
+                            <h3>Expert Writer</h3>
+                            <span>Professional writing and creative support.</span>
+                        </div>
+                        <div class="scenario-card">
+                            <div class="scenario-icon-placeholder">📊</div>
+                            <h3>Report Assistant</h3>
+                            <span>Generate weekly reports automatically.</span>
+                        </div>
+                    </div>
+                    <div class="chat-box">
+                        <label for="imageUpload" class="image-upload-btn" title="Upload Image">
+                            📎
+                            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                        </label>
+                        <div class="image-preview-container" id="imagePreviewContainer">
+                            <img src="" alt="Image preview" id="imagePreview"/>
+                            <button class="remove-image-btn" id="removeImageBtn">&times;</button>
+                        </div>
+                        <input type="text" id="chatInput" placeholder="Type your question or describe image...">
+                        <button class="send-btn" id="sendBtn">➤</button>
+                    </div>
+                </div>
+                <div class="page page-evaluation">
+                    <h2>User Evaluation</h2>
+                    <ul class="evaluation-list">
+                        <li><strong>Programming Ability:</strong> Excellent at code generation, debugging, and algorithmic thinking. <span class="stars">★★★★☆</span></li>
+                        <li><strong>Comprehension:</strong> Quickly understands user intent and context. <span class="stars">★★★★★</span></li>
+                        <li><strong>Image Processing:</strong> Supports basic image analysis and description. <span class="stars">★★★☆☆</span></li>
+                        <li><strong>Text Summarization:</strong> Can condense long texts into concise summaries. <span class="stars">★★★★☆</span></li>
+                        <li><strong>Creativity:</strong> Generates creative content and ideas. <span class="stars">★★★★☆</span></li>
+                        <li><strong>Professional Writing:</strong> Delivers high-quality, structured documents. <span class="stars">★★★★☆</span></li>
+                    </ul>
+                    <div class="evaluation-details">
+                        <div class="eval-block">
+                            <h3>Programming Ability</h3>
+                            <p>Skilled in generating, refactoring, and debugging code in multiple languages. Able to solve algorithmic problems and provide code explanations.</p>
+                        </div>
+                        <div class="eval-block">
+                            <h3>Comprehension</h3>
+                            <p>Quickly grasps user intent, context, and requirements, providing accurate and relevant responses.</p>
+                        </div>
+                        <div class="eval-block">
+                            <h3>Image Processing</h3>
+                            <p>Capable of basic image analysis, description, and simple visual tasks. Not suitable for advanced image editing.</p>
+                        </div>
+                        <div class="eval-block">
+                            <h3>Text Summarization</h3>
+                            <p>Efficiently summarizes long texts, extracting key points and main ideas for easy understanding.</p>
+                        </div>
+                        <div class="eval-block">
+                            <h3>Creativity</h3>
+                            <p>Generates creative content, ideas, and solutions for a variety of writing and brainstorming tasks.</p>
+                        </div>
+                        <div class="eval-block">
+                            <h3>Professional Writing</h3>
+                            <p>Produces well-structured, high-quality documents suitable for academic, business, and creative purposes.</p>
+                        </div>
+                    </div>
+                    <p class="evaluation-desc">Aquila Enhanced Edition excels in programming, comprehension, and professional writing, with solid performance in image processing and creativity.</p>
+                </div>
+
+                <div class="page page-focused-chat" style="display: none;">
+                    <div class="focused-chat-content">
+                        <div class="scenario-display">
+                            <div class="scenario-icon-large" id="focusedScenarioIcon">✍️</div>
+                            <h1 class="scenario-title-large" id="focusedScenarioTitle">Text Summarization</h1>
+                            <p class="scenario-description" id="focusedScenarioDescription">提供各类文本创作、润色、续写等服务。</p>
+                        </div>
+                    </div>
+                    <div class="chat-box-bottom">
+                        <div class="chat-box" id="focusedChatBox"> 
+                            <label for="imageUploadFocused" class="image-upload-btn" title="Upload Image">
+                                📎
+                                <input type="file" id="imageUploadFocused" accept="image/*" style="display: none;">
+                            </label>
+                            <div class="image-preview-container" id="imagePreviewContainerFocused">
+                                <img src="" alt="Image preview" id="imagePreviewFocused"/>
+                                <button class="remove-image-btn" id="removeImageBtnFocused">&times;</button>
+                            </div>
+                            <input type="text" id="chatInputFocused" placeholder="请输入您的问题...">
+                            <button class="send-btn" id="sendBtnFocused">➤</button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <footer class="page-footer">
+                <div class="footer-content-wrapper">
+                    <div class="footer-content">
+                        <span>渝ICP备2025053282号.</span>
+                        <span>Contact us: <a href="mailto:ytogabode40@2925.com">ytogabode40@2925.com</a></span>
+                    </div>
+                    <div class="footer-bottom">Content generated by AI, cannot be guaranteed to be accurate,For reference only. | Privacy Policy | Terms of Service</div>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script>
+        const imageUpload = document.getElementById('imageUpload');
+        const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+        const imagePreview = document.getElementById('imagePreview');
+        const removeImageBtn = document.getElementById('removeImageBtn');
+        const chatInput = document.getElementById('chatInput');
+
+        imageUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreviewContainer.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        removeImageBtn.addEventListener('click', function() {
+            imagePreview.src = '';
+            imagePreviewContainer.style.display = 'none';
+            imageUpload.value = ''; // Reset the file input
+        });
+
+        // Optional: Adjust chat input placeholder when image is present
+        // This is a basic example, you might want to refine this logic
+        const observer = new MutationObserver(() => {
+            if (imagePreviewContainer.style.display === 'block') {
+                chatInput.placeholder = 'Describe the image or ask a question...';
+            } else {
+                chatInput.placeholder = 'Type your question or describe image...';
+            }
+        });
+        observer.observe(imagePreviewContainer, { attributes: true, attributeFilter: ['style'] });
+
+        const scenarioCards = document.querySelectorAll('.scenario-card');
+        const pageConversation = document.querySelector('.page-conversation');
+        const pageFocusedChat = document.querySelector('.page-focused-chat');
+        const mainHeader = document.querySelector('.main-header'); // The main "Aquila Enhanced Edition" header
+
+        scenarioCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const scenarioTitle = this.querySelector('h3').textContent;
+                const scenarioIcon = this.querySelector('.scenario-icon-placeholder').textContent;
+                const scenarioDesc = this.querySelector('span').textContent;
+                
+                // 更新场景显示区域
+                document.getElementById('focusedScenarioIcon').textContent = scenarioIcon;
+                document.getElementById('focusedScenarioTitle').textContent = scenarioTitle;
+                document.getElementById('focusedScenarioDescription').textContent = scenarioDesc;
+                
+                pageConversation.style.display = 'none';
+                mainHeader.style.display = 'none'; // Hide the main page header
+                pageFocusedChat.style.display = 'block';
+                // Potentially re-initialize or clear the focused chat input/preview
+                document.getElementById('chatInputFocused').value = '';
+                const previewContainerFocused = document.getElementById('imagePreviewContainerFocused');
+                previewContainerFocused.style.display = 'none';
+                document.getElementById('imagePreviewFocused').src = '';
+                document.getElementById('imageUploadFocused').value = '';
+            });
+        });
+
+        // 添加ESC键返回功能
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && pageFocusedChat.style.display === 'block') {
+                pageFocusedChat.style.display = 'none';
+                pageConversation.style.display = 'block';
+                mainHeader.style.display = 'flex'; // Show the main page header again
+            }
+        });
+
+        // 添加点击场景显示区域返回功能（可选）
+        document.querySelector('.scenario-display').addEventListener('click', function() {
+            pageFocusedChat.style.display = 'none';
+            pageConversation.style.display = 'block';
+            mainHeader.style.display = 'flex';
+        });
+
+        // JS for the main chatbox image upload (already exists, ensure IDs are unique if copying chatbox)
+        // const imageUpload = document.getElementById('imageUpload'); ... etc.
+        
+        // JS for the FOCUSED chatbox image upload (if IDs are different)
+        const imageUploadFocused = document.getElementById('imageUploadFocused');
+        const imagePreviewContainerFocused = document.getElementById('imagePreviewContainerFocused');
+        const imagePreviewFocusedImg = document.getElementById('imagePreviewFocused'); // Corrected variable name
+        const removeImageBtnFocused = document.getElementById('removeImageBtnFocused');
+        // const chatInputFocused = document.getElementById('chatInputFocused'); // Already declared above
+
+        if (imageUploadFocused) { // Check if the element exists
+            imageUploadFocused.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreviewFocusedImg.src = e.target.result;
+                        imagePreviewContainerFocused.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        if (removeImageBtnFocused) { // Check if the element exists
+            removeImageBtnFocused.addEventListener('click', function() {
+                imagePreviewFocusedImg.src = '';
+                imagePreviewContainerFocused.style.display = 'none';
+                if(imageUploadFocused) imageUploadFocused.value = ''; 
+            });
+        }
+
+    </script>
+</body>
+</html> 
